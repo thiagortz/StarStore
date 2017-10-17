@@ -1,0 +1,3 @@
+rootProject.name = 'StarStore'
+
+include ':app'
