@@ -4,8 +4,7 @@ import{
     StyleSheet,
     Text,
     View,
-    FlatList,
-    ActivityIndicator, 
+    FlatList
 }from 'react-native';
 
 import Product from '../components/Product'
@@ -16,7 +15,6 @@ export default class Products extends Component{
         super();
         this.state = {
             products: [],
-            loading: true
         }
     }
 
