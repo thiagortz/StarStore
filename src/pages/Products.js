@@ -4,7 +4,8 @@ import{
     StyleSheet,
     Text,
     View,
-    FlatList
+    FlatList,
+    AsyncStorage,
 }from 'react-native';
 
 import Product from '../components/Product'
@@ -19,13 +20,30 @@ export default class Products extends Component{
     }
 
     componentDidMount(){
-        fetch('https://raw.githubusercontent.com/stone-payments/desafio-mobile/master/products.json')
-        .then(resp => resp.json())
-        .then(json => this.setState({products: json}))
-        .catch(e => {
-          console.warn('Não foi possível carregar os produtos: ' + e);
-          this.setState({status: 'ERRO'})
-        });
+        try {
+            AsyncStorage.getItem('@StarStore:products').then(result =>{
+                if (result){
+                    let products = JSON.parse(result)
+                    this.setState({products})
+                }else{
+                    this.getProduct()
+                }
+            })
+          } catch (error) {
+            console.warn('Não foi possível carregar os produtos: ');
+          }
+    }
+
+    async getProduct(){
+        try{
+            let response = await fetch('https://raw.githubusercontent.com/stone-payments/desafio-mobile/master/products.json')
+            let json = await response.json()
+            this.setState({products: json})
+            AsyncStorage.setItem('@StarStore:products', JSON.stringify(json))
+        }catch(error){
+            console.warn('Não foi possível carregar os produtos: ' + e);
+            this.setState({status: 'ERRO'})
+        }
     }
 
     render(){

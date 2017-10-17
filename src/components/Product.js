@@ -1,9 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -35,6 +29,7 @@ export default class Product extends Component {
         );
     }
 }
+
 
 const styles = StyleSheet.create({
     thumbnailHd: {
