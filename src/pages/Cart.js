@@ -4,17 +4,13 @@ import{
     StyleSheet,
     Text,
     View,
-    TextInput,
-    ActivityIndicator,
-    AsyncStorage,
     FlatList,
-    Dimensions
+    ScrollView
 }from 'react-native';
 
 import Cart from "../model/Cart"
 import Item from '../components/Item'
 
-const width = Dimensions.get('screen').width
 
 export default class CartPage extends Component{
     constructor(){
@@ -42,8 +38,7 @@ export default class CartPage extends Component{
         const {amount} = this.state
 
         return (
-            <View>
-                    <Text style={styles.amount}>Total: {amount}</Text>
+            <ScrollView>
             <FlatList
                 data={itens}
                 keyExtractor={item => item.title}
@@ -52,7 +47,8 @@ export default class CartPage extends Component{
 
                     </Item>}>
             </FlatList>
-            </View>)
+                <Text style={styles.amount}>Total: {amount}</Text>
+            </ScrollView>)
     }
 
     render(){

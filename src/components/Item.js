@@ -27,7 +27,7 @@ export default class Item extends Component {
                     <Image style={styles.poster} resizeMode="contain" source={{uri: product.thumbnailHd}}/>
                     <Text style={styles.title}>{product.title}</Text>
                 </View>
-                <View style={styles.price}><Text style={styles.title}>Preço: {product.price}</Text></View>
+                <View style={styles.price}><Text>Preço: {product.price}</Text></View>
             </View>
         );
     }
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
        marginLeft: 10
    },
    price:{
-    flexDirection:'row'
+    flexDirection:'row',
+    marginLeft: 10
    }
 });
