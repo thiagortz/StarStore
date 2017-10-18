@@ -5,9 +5,11 @@ import {
   View,
   Image,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 
 const width = Dimensions.get('screen').width
+import Cart from "../model/Cart"
 
 export default class Product extends Component {
     constructor(props){
@@ -17,12 +19,22 @@ export default class Product extends Component {
         }
     }
 
+    
+   addCar(){
+    const {product} = this.state
+    let cart = new Cart()
+    cart.add = product
+
+   }
+
     render() {
         const {product} = this.state
 
         return (
             <View>
-                <Image source={{uri: product.thumbnailHd}}  style={styles.thumbnailHd} />
+                <TouchableOpacity onPress={this.addCar.bind(this)}>
+                    <Image source={{uri: product.thumbnailHd}}  style={styles.thumbnailHd} />
+                </TouchableOpacity>
                 <View><Text>Titulo: {product.title}</Text></View>
                 <View><Text>Preço: {product.price}</Text></View>
             </View>
